@@ -1,5 +1,6 @@
 # ==============================================================================================================
-# Petrichor is a menu-based weather logging programme that allows users to; log, view, and search weather data 
+# Petrichor is a menu-based weather logging programme that allows users to; log, view, and search weather data
+# Username: ph359 
 # ==============================================================================================================
 
 #Imports 
@@ -7,4 +8,8 @@ import re       # Used to validate users input
 import csv      # Used for saving and loading data to .csv files
 import datetime # Automatically gets today's date
 
-
+# CLASS 1 - Weather Entry
+class WeatherEntry:
+    VALID_CONDITIONS = ["Clear", "Cloudy", "Fog", "Drizzle", "Rain", 
+                        "Heavy Rain", "Snow", "Thunderstorm"]                       
+                        
