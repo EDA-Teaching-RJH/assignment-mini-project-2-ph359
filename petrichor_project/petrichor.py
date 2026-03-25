@@ -11,5 +11,15 @@ import datetime # Automatically gets today's date
 # CLASS 1 - Weather Entry
 class WeatherEntry:
     VALID_CONDITIONS = ["Clear", "Cloudy", "Fog", "Drizzle", "Rain", 
-                        "Heavy Rain", "Snow", "Thunderstorm"]                       
+                        "Heavy Rain", "Snow", "Thunderstorm"]       
+
+    def __init__(self, city, date, condition):
+        # data points
+        self.city = city
+        self.date = date
+        self.conditon = condition
+
+    def __str__(self): 
+        # prints out entry 
+        return f"[{self.date}] {self.city} - {self.condtion}"                
                         
