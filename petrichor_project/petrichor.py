@@ -9,7 +9,7 @@ import csv      # Used for saving and loading data to .csv files
 import datetime # Automatically gets today's date
 
 # CLASS 1 - Weather Entry
-class WeatherEntry:
+class WeatherLog:
     VALID_CONDITIONS = ["Clear", "Cloudy", "Fog", "Drizzle", "Rain", 
                         "Heavy Rain", "Snow", "Thunderstorm"]       
 
@@ -24,7 +24,7 @@ class WeatherEntry:
         return f"[{self.date}] {self.city} - {self.condtion}"                
                         
 # CLASS 2 - Addtional Entry 
-class AdditionalEntry(WeatherEntry):
+class WeatherObservation(WeatherLog):
     
     def __init__(self, city, date, condition, temperature, humidity,
                  wind_speed):
