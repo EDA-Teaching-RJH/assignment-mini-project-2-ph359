@@ -71,36 +71,36 @@ class PetrichorCore:
 
     def __init__(self):
         # Creates empty list when programme starts 
-        self.entrie = []
+        self.entries = []
     
     def add_entry(self, entry):
         # Adds new entry
-        self.entrie.append(entry)
+        self.entries.append(entry)
         # append() addes an item to the end of a list
         print(f"Entry added for {entry.city} on {entry.date}. ")
 
     def remove_entry(self, index):
         # Removes an entry by its position number on list
-        if 0 <= index < len(self.entrie):
-            removed = self.entrie.pop(index)
+        if 0 <= index < len(self.entries):
+            removed = self.entries.pop(index)
             print(f"Entry for {removed.city} on {removed.date} removed. ")
         else:
             print("Invalid entry number. ")
     
     def display_all(self):
         # Displays every entry 
-        if not self.entrie:
+        if not self.entries:
             print("No entries logged. ")
         else:
             print("\n----- All Entries -----")
-            for i, entry in enumerate(self.entrie):
+            for i, entry in enumerate(self.entries):
                 print(f"{i + 1}. {entry}")
             print("-------------------------")
 
     def search_by_city(self, city):
         # Loops through every entry and check for a match
         result = []
-        for entry in self.entrie:
+        for entry in self.entries:
             if city.lower() in entry.city.lower():
         # Lower() converts all inputs to lowercase, so python knows the inputs are the same. 
                 result.append(entry)
@@ -118,7 +118,7 @@ class PetrichorCore:
     def filter_by_condition(self, condition):
         # Filters all entries by specific weather condition
         result = []
-        for entry in self.entrie:
+        for entry in self.entries:
             if entry.condition.lower() == condition.lower():
                 result.append(entry)
             
@@ -132,13 +132,13 @@ class PetrichorCore:
 
     def statistics(self):
         # Calculates and displays a summery of statistics from all logged entries
-        if not self.entrie:
+        if not self.entries:
             print("No entries logged. ")
             return
         
         temperature = []
         # Collects temperatures from entries that have a temperature
-        for entry in self.entrie:
+        for entry in self.entries:
             try:
                 temperature.append(entry.temperature)
             except AttributeError: 
@@ -146,7 +146,7 @@ class PetrichorCore:
                 pass
             
         print("\n----- Statistics -----")
-        print(f"total entries logged: {len(self.entrie)}")
+        print(f"total entries logged: {len(self.entries)}")
 
         if temperature:
             print(f"Average Temperature: {sum(temperature) / len(temperature):.1f}C")
@@ -157,9 +157,28 @@ class PetrichorCore:
         
         print("-------------------------")
 
-    def save_to_csv(self, filename = "weather_log.csv"):
-        #Saves all entries to a .csv file so data is not lost when programme terminates
-        with open(filename, "W", newline = "") as file:
+    def save_to_csv(self, filename="weather_log.csv"):
+        # Saves all entries to a .csv file so data is not lost when programme is terminated 
+        with open(filename, "W", newline="") as file:
             writer = csv.writer(file)
-            # Header
-            writer.writerow([])
+        # Writes the header row first
+            writer.writerow(["type", "city", "date", "condition", "temperature",
+                            "humidity", "wind_speed", "visibility", "pressure", "AQI"])
+        
+            for entry in self.entries:
+                if entry.type == "WeatherObservation":
+                    writer.writerow([entry.type, entry.city, entry.date,
+                                    entry.condition, entry.temperature, 
+                                    entry.humidity, entry.wind_speed,
+                                    "", "", ""])
+                
+                 elif entry.type == "AtmosphericReading":
+                    writer.writerow([entry.type, entry.city, entry.date,
+                                    entry.condition, "", "", "",
+                                    entry.visibility, entry.pressure, entry.aqi])
+            
+                elif entry.type == "WeatherLog":
+                    writer.writerow([entry.type, entry.city, entry.date, entry.condition,
+                                    "", "", "", "", "", ""])
+        print(f"Log saved to {filename}. ")
+        
