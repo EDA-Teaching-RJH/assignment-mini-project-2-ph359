@@ -110,4 +110,5 @@ class PetrichorCore:
         # Does the counting manually
                 print(f"{i + 1}. {entry}")
             print("---------------------------------")
-    
+
+    def 
