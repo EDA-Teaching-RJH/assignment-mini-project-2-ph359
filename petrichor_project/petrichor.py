@@ -17,11 +17,12 @@ class WeatherLog:
         # data points
         self.city = city
         self.date = date
-        self.conditon = condition
-
+        self.condition = condition
+        self.type = "WeatherLog"
+        
     def __str__(self): 
         # prints out entry 
-        return f"[{self.date}] {self.city} - {self.condtion}"                
+        return f"[{self.date}] {self.city} - {self.condition}"                
                         
 # CLASS 2 - Addtional Entry (subclass)
 # Adds temperature, humidity, and Wind Speed 
@@ -35,13 +36,14 @@ class WeatherObservation(WeatherLog):
         self.temperature = temperature
         self.humidity = humidity
         self.wind_speed = wind_speed
+        self.type = "WeatherObservation"
     
     def __str__(self):
         # Overrides the print in 'Weather Log'to include additional details
         return (f"[{self.date}] {self.city} - {self.condition} |" 
                 f"[Temp: {self.temperature}C] |"    
                 f"Humidity: {self.humidity}% |"
-                f"Wind Speed: {self.wind_speed}kn/kt |")
+                f"Wind Speed: {self.wind_speed}kn |")
     
 # CLASS 3 - Atmospheric Reading (Subclass)
 # Adds visibiltiy, pressure, and the Air quality Index(AQI)
@@ -54,6 +56,7 @@ class AtmosphericReading(WeatherLog):
         self.visibility = visibility
         self.pressure = pressure
         self.aqi = aqi 
+        self.type = "AtmosphericReading"
 
     def __str__(self):
         # Overrides the print in 'Weather Log' to include extra measurements
@@ -154,4 +157,9 @@ class PetrichorCore:
         
         print("-------------------------")
 
-        
+    def save_to_csv(self, filename = "weather_log.csv"):
+        #Saves all entries to a .csv file so data is not lost when programme terminates
+        with open(filename, "W", newline = "") as file:
+            writer = csv.writer(file)
+            # Header
+            writer.writerow([])
