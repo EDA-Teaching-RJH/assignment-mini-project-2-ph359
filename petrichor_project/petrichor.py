@@ -68,47 +68,90 @@ class PetrichorCore:
 
     def __init__(self):
         # Creates empty list when programme starts 
-        self.entries = []
+        self.entrie = []
     
     def add_entry(self, entry):
         # Adds new entry
-        self.entries.append(entry)
+        self.entrie.append(entry)
+        # append() addes an item to the end of a list
         print(f"Entry added for {entry.city} on {entry.date}. ")
 
     def remove_entry(self, index):
         # Removes an entry by its position number on list
-        if 0 <= index < len(self.entries):
-            removed = self.entries.pop(index)
+        if 0 <= index < len(self.entrie):
+            removed = self.entrie.pop(index)
             print(f"Entry for {removed.city} on {removed.date} removed. ")
         else:
             print("Invalid entry number. ")
     
     def display_all(self):
         # Displays every entry 
-        if not self.entries:
+        if not self.entrie:
             print("No entries logged. ")
         else:
             print("\n----- All Entries -----")
-            for i, entry in enumerate(self.entries):
+            for i, entry in enumerate(self.entrie):
                 print(f"{i + 1}. {entry}")
             print("-------------------------")
 
     def search_by_city(self, city):
         # Loops through every entry and check for a match
-        results = []
-        for entry in self.entries:
+        result = []
+        for entry in self.entrie:
             if city.lower() in entry.city.lower():
         # Lower() converts all inputs to lowercase, so python knows the inputs are the same. 
-                results.append(entry)
+                result.append(entry)
         
-        if not results:
-            print(f"No entries found for {city}. ")
+        if not result:
+            print(f"No entrie found for {city}. ")
         else:
             print(f"\n----- Results for {city} -----")
-            for i, entry in enumerate(results):
+            for i, entry in enumerate(result):
         # enumerate() gives a position number and item at the same time. 
         # Does the counting manually
                 print(f"{i + 1}. {entry}")
             print("---------------------------------")
 
-    def 
+    def filter_by_condition(self, condition):
+        # Filters all entries by specific weather condition
+        result = []
+        for entry in self.entrie:
+            if entry.condition.lower() == condition.lower():
+                result.append(entry)
+            
+            if not result:
+                print(f"No entries found with condition: {condition}. ")
+            else:
+                print(f"\n----- Entries with {condition} -----")
+                for i, entry in enumerate(result):
+                    print(f"{i + 1}. {entry}")
+                print("---------------------------------------")
+
+    def statistics(self):
+        # Calculates and displays a summery of statistics from all logged entries
+        if not self.entrie:
+            print("No entries logged. ")
+            return
+        
+        temperature = []
+        # Collects temperatures from entries that have a temperature
+        for entry in self.entrie:
+            try:
+                temperature.append(entry.temperature)
+            except AttributeError: 
+        # Entry does not have a temperature - skips it
+                pass
+            
+        print("\n----- Statistics -----")
+        print(f"total entries logged: {len(self.entrie)}")
+
+        if temperature:
+            print(f"Average Temperature: {sum(temperature) / len(temperature):.1f}C")
+            print(f"Highest Reading:     {max(temperature)}C")
+            print(f"Lowest reading:      {min(temperature)}C")
+        else:
+            print("No temperature data logged. ")
+        
+        print("-------------------------")
+
+        
