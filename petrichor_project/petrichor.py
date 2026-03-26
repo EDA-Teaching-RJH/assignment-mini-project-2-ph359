@@ -23,3 +23,20 @@ class WeatherEntry:
         # prints out entry 
         return f"[{self.date}] {self.city} - {self.condtion}"                
                         
+# CLASS 2 - Addtional Entry 
+class AdditionalEntry(WeatherEntry):
+    
+    def __init__(self, city, date, condition, temperature, humidity,
+                 wind_speed):
+        super().__init__(city, date, condition)
+        #Super() calls __init__ from 'Weather Entry' so we dont have to write existing data, e.g. city, date, condition
+        self.temperature = temperature
+        self.humidity = humidity
+        self.wind_speed = wind_speed
+    
+    def __str__(self):
+        # Overrides the print in 'Weather Entry'to include additional details
+        return (f"[{self.date}] {self.city} - {self.condition} |" 
+                f"[Temp: {self.temperature}C] |"    
+                f"Humidity: {self.humidity}% |"
+                f"Wind Speed: {self.wind_speed}kn/kt |")
