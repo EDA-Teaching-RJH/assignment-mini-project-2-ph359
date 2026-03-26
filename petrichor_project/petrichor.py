@@ -62,3 +62,33 @@ class AtmosphericReading(WeatherLog):
                 f"Pressure: {self.pressure} hPa |"
                 f"AQI: {self.aqi}")
 
+# CLASS 4 - Petrichor Core (Manager)
+# Centre of the programme, manages all entries
+class PetrichorCore:
+
+    def __init__(self):
+        # Creates empty list when programme starts 
+        self.entries = []
+    
+    def add_entry(self, entry):
+        # Adds new entry
+        self.entries.append(entry)
+        print(f"Entry added for {entry.city} on {entry.date}. ")
+
+    def remove_entry(self, index):
+        # Removes an entry by its position number on list
+        if 0 <= index < len(self.entries):
+            removed = self.entries.pop(index)
+            print(f"Entry for {removed.city} on {removed.date} removed. ")
+        else:
+            print("Invalid entry number. ")
+    
+    def display_all(self):
+        # Displays every entry 
+        if not self.entries:
+            print("No entries logged. ")
+        else:
+            print("\n----- All Entries -----")
+            for i, entry in enumerate(self.entries):
+                print(f"{i + 1}. {entry}")
+            print("-------------------------")
