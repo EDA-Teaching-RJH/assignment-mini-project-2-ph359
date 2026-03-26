@@ -111,7 +111,7 @@ class PetrichorCore:
             print(f"\n----- Results for {city} -----")
             for i, entry in enumerate(result):
         # enumerate() gives a position number and item at the same time. 
-        # Does the counting manually
+        # Does the counting automatically
                 print(f"{i + 1}. {entry}")
             print("---------------------------------")
 
@@ -227,7 +227,7 @@ def display_menu():
     print("11.                   Exit")
     print("==============================")
 
-return input("Select option: ").strip()
+    return input("Select option: ").strip()
 
 # OPTION - 1
 def log_weather_observation():
@@ -250,3 +250,37 @@ def log_weather_observation():
     
     # Create and return a new WeatherObservation item
     return WeatherObservation(city, date, condition, temperature, humidity, wind_speed)
+
+# OPTION - 2
+def log_atmospheric_reading():
+    # Collects input from the user for atmospheric reading
+    print("\n----- Log Atmospheric Reading -----")
+    city = input("Enter city: ").strip().title()                   
+    date = input("Enter date (DD-MM-YYYY): ").strip()
+    print(f"Valid conditions: {WeatherLog.VALID_CONDITIONS}")
+    condition = input("Enter condition: ").strip().title()
+    visibility = float(input("Enter visibility (km): ").strip())
+    pressure = float(input("Enter pressure (hPa): ").strip())
+    aqi = int(input("Enter air quality index (0 - 150+): ").strip())
+
+    if condition not in WeatherLog.VALID_CONDITIONS:
+        print("Invalid condition. Entry not logged. ")
+        return None
+    
+    return AtmosphericReading(city, date, condition, visibility, pressure, aqi)
+
+# OPTION - 3 
+def log_basic_entry():
+    # Collects input from the user for a basic weather entry
+    print("\n----- Log Basic Weather Entry -----")
+    city = input("Enter city: ").strip().title()                   
+    date = input("Enter date (DD-MM-YYYY): ").strip()
+    print(f"Valid conditions: {WeatherLog.VALID_CONDITIONS}")
+    condition = input("Enter condition: ").strip().title()
+
+    if condition not in WeatherLog.VALID_CONDITIONS:
+        print("Invalid condition. Entry not logged. ")
+        return None
+    
+    return AtmosphericReading(city, date, condition)
+
