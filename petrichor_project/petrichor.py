@@ -92,3 +92,22 @@ class PetrichorCore:
             for i, entry in enumerate(self.entries):
                 print(f"{i + 1}. {entry}")
             print("-------------------------")
+
+    def search_by_city(self, city):
+        # Loops through every entry and check for a match
+        results = []
+        for entry in self.entries:
+            if city.lower() in entry.city.lower():
+        # Lower() converts all inputs to lowercase, so python knows the inputs are the same. 
+                results.append(entry)
+        
+        if not results:
+            print(f"No entries found for {city}. ")
+        else:
+            print(f"\n----- Results for {city} -----")
+            for i, entry in enumerate(results):
+        # enumerate() gives a position number and item at the same time. 
+        # Does the counting manually
+                print(f"{i + 1}. {entry}")
+            print("---------------------------------")
+    
