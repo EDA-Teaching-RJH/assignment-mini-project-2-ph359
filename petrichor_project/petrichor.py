@@ -206,7 +206,8 @@ class PetrichorCore:
             print(f"Log loaded from {filename}. ")
         except FileNotFoundError:
             print("No saved log found. ")
-                             
+
+# Display Menu                         
 def display_menu():
     # Prints the menu options to terminal
     print("\n==============================")
@@ -226,5 +227,26 @@ def display_menu():
     print("11.                   Exit")
     print("==============================")
 
-    return input("Select option: ").strip()
+return input("Select option: ").strip()
 
+# OPTION - 1
+def log_weather_observation():
+    # Collects input from the user for Weather Observation
+    print("\n----- Log Weather Observation -----")
+    city = input("Enter city: ").strip().title()                    # .strip().title() removes extra spaces 
+                                                                    # and capitalise the first letter
+    date = input("Enter date (DD-MM-YYYY): ").strip()
+    print(f"Valid conditions: {WeatherLog.VALID_CONDITIONS}")
+    condition = input("Enter condition: ").strip().title()
+    temperature = float(input("Enter temperature (C): ").strip())   # Float() to convert text into numbers, 
+                                                                    # used float for temp as will be decimals.
+    humidity = int(input("Enter humidity (%): ").strip())           # int() converts text into numbers.
+    wind_speed = float(input("Enter wind speed (kn): ").strip())
+
+    # Check if condition is valid before creating entry
+    if condition not in WeatherLog.VALID_CONDITIONS:
+        print("Invalid condition. Entry not logged. ")
+        return None
+    
+    # Create and return a new WeatherObservation item
+    return WeatherObservation(city, date, condition, temperature, humidity, wind_speed)
