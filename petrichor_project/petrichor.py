@@ -181,4 +181,29 @@ class PetrichorCore:
                     writer.writerow([entry.type, entry.city, entry.date, entry.condition,
                                     "", "", "", "", "", ""])
         print(f"Log saved to {filename}. ")
-        
+    
+    def load_from_csv(self, filename="weather_log.csv"):
+        # Loads entries from a .csv file into programme
+        try:
+            with open(filename, "r") as file:
+                reader = csv.reader(file)
+                next(reader) # Skips the header row
+                for row in reader:
+                    if row[0] == "WeatherObservation":
+                        entry = WeatherObservation(row[1], row[2], row[3],
+                                           float(row[4]), float(row[5]),
+                                            int(row[6]))
+                        self.entries.append(entry)
+                    elif row[0] == "AtmosphericReading":
+                        entry = AtmosphericReading(row[1], row[2], row[3],
+                                                   float(row[7]), float(row[8]),
+                                                   int(row[9]))
+                        self.entries.append(entry)
+                    elif row[0] == "WeatherLog":
+                        entry = WeatherLog(row[1], row[2], row[3])
+                        self.entries.append(entry)
+            
+            print(f"Log loaded from {filename}. ")
+        except FileNotFoundError:
+            print("No saved log found. ")
+                             
