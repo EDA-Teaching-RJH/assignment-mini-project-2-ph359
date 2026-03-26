@@ -207,3 +207,24 @@ class PetrichorCore:
         except FileNotFoundError:
             print("No saved log found. ")
                              
+def display_menu():
+    # Prints the menu options to terminal
+    print("\n==============================")
+    print("         PETRICHOR            ")
+    print("  Weather logging Programme   ")
+    print("==============================")
+    print("1. Log Weather Observation")
+    print("2. Log Atmospheric Reading")
+    print("3. Log Basic Weather Entry")
+    print("4.        View all Entries")
+    print("5.          Search by city")
+    print("6.    Filter by Conditions")
+    print("7.      Summary Statistics")
+    print("8.            Delete Entry")
+    print("9.                Save Log")
+    print("10.               Load log")
+    print("11.                   Exit")
+    print("==============================")
+
+    return input("Select option: ").strip()
+
