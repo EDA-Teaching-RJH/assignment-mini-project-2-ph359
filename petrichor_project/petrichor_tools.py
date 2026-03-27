@@ -14,7 +14,7 @@ def validate_date(date):
     return bool(pattern.match(date))
 
 def validate_city(city):
-    # Checks that city only contains letters and spaces, no numbers
+    # Checks that city only contains letters and spaces
     pattern = re.compile(r"^[A-Za-z\s]+$")
     return bool(pattern.match(city))
 
