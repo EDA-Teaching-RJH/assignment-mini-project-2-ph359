@@ -319,7 +319,7 @@ def log_basic_entry():
         return None      
            
     date = input("Enter date (DD-MM-YYYY): ").strip()
-     if not validate_date(date):
+    if not validate_date(date):
         print("Invalid date. Please use DD-MM-YYYY format. ")
         return None
     
