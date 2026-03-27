@@ -274,29 +274,57 @@ def log_weather_observation():
 def log_atmospheric_reading():
     # Collects input from the user for atmospheric reading
     print("\n----- Log Atmospheric Reading -----")
-    city = input("Enter city: ").strip().title()                   
+
+    city = input("Enter city: ").strip().title() 
+    if not validate_city(city):
+        print("Invalid city. Only letter and spaces allowed")
+        return None
+                      
     date = input("Enter date (DD-MM-YYYY): ").strip()
+    if not validate_date(date):
+        print("Invalid date. Please use DD-MM-YYYY format. ")
+        return None
+    
     print(f"Valid conditions: {WeatherLog.VALID_CONDITIONS}")
     condition = input("Enter condition: ").strip().title()
-    visibility = float(input("Enter visibility (km): ").strip())
-    pressure = float(input("Enter pressure (hPa): ").strip())
-    aqi = int(input("Enter air quality index (0 - 150+): ").strip())
-
     if condition not in WeatherLog.VALID_CONDITIONS:
         print("Invalid condition. Entry not logged. ")
         return None
     
+    visibility = float(input("Enter visibility (km): ").strip())
+    if not validate_positive_number(visibility):
+        print("Invalid distance. ")
+        return None
+    
+    pressure = float(input("Enter pressure (hPa): ").strip())
+    if not validate_positive_number(pressure):
+        print("Invalid pressure. ")
+        return None
+    
+    aqi = int(input("Enter air quality index (0 - 150+): ").strip())
+    if not validate_positive_number(aqi):
+        print("Invalid AQI value. ")
+        return None
+
     return AtmosphericReading(city, date, condition, visibility, pressure, aqi)
 
 # OPTION - 3 
 def log_basic_entry():
     # Collects input from the user for a basic weather entry
     print("\n----- Log Basic Weather Entry -----")
-    city = input("Enter city: ").strip().title()                   
+
+    city = input("Enter city: ").strip().title()      
+    if not validate_city(city):
+        print("Invalid city. Only letter and spaces allowed")
+        return None      
+           
     date = input("Enter date (DD-MM-YYYY): ").strip()
+     if not validate_date(date):
+        print("Invalid date. Please use DD-MM-YYYY format. ")
+        return None
+    
     print(f"Valid conditions: {WeatherLog.VALID_CONDITIONS}")
     condition = input("Enter condition: ").strip().title()
-
     if condition not in WeatherLog.VALID_CONDITIONS:
         print("Invalid condition. Entry not logged. ")
         return None
