@@ -306,7 +306,7 @@ def log_weather_observation():
         print("Invalid measurement. ")
         return None
     
-    wind_speed = float(input("Enter wind speed (kn): ").strip())
+    wind_speed = (input("Enter wind speed (kn): ").strip())
     if not validate_positive_number(wind_speed):
         print("Invalid measurement. ")
         return None
@@ -338,17 +338,17 @@ def log_atmospheric_reading():
         print("Invalid condition. Entry not logged. ")
         return None
     
-    visibility = float(input("Enter visibility (km): ").strip())
+    visibility = (input("Enter visibility (km): ").strip())
     if not validate_positive_number(visibility):
         print("Invalid distance. ")
         return None
     
-    pressure = float(input("Enter pressure (hPa): ").strip())
+    pressure = (input("Enter pressure (hPa): ").strip())
     if not validate_positive_number(pressure):
         print("Invalid pressure. ")
         return None
     
-    aqi = int(input("Enter air quality index (0 - 150+): ").strip())
+    aqi = (input("Enter air quality index (0 - 150+): ").strip())
     if not validate_positive_number(aqi):
         print("Invalid AQI value. ")
         return None

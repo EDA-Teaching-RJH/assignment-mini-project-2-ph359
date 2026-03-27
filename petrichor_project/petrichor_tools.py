@@ -35,6 +35,8 @@ def get_today_date():
 
 def aqi_description(aqi):
     # Returns a description based on the AQI score
+    aqi = int(aqi)
+    
     if aqi <= 50:
         return "Good"
     elif aqi <= 100:
