@@ -1,0 +1,27 @@
+# =====================================================================================================================
+# petrichor_tools.py is a custom library for Petrichor
+# =====================================================================================================================
+
+#IMPORTS
+import re # used for regex pattern matching
+
+def validate_date(date):
+    # Checks date matches DD - MM - YYYY format
+    # \d{2} = exactly 2 digits \d{4} = exactly 4 digits
+    pattern = re.compile(r"^\d{2}-\d{2}-\d{4}$")         #compile() builds the regex pattern once and stores it
+    return bool(pattern.match(date))
+
+def validate_city(city):
+    # Checks that city only contains letters and spaces, no numbers
+    pattern = re.compile(r"^[A-Za-z\s]+$")
+    return bool(pattern.match(city))
+
+def validate_temperature(temperature):
+    # Checks temperature is a valid number 
+    pattern = re.compile(r"^-?\d+(\.\d+)?$")
+    return bool(pattern.match(temperature))
+
+def validate_positive_number(value):
+    # Checks value is a positive number
+    pattern = re.compile(r"^\d+(\.\d+)?$")
+    return bool(pattern.match(value))
