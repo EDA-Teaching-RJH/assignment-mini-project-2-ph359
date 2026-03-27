@@ -1,0 +1,8 @@
+type,city,date,condition,temperature,humidity,wind_speed,visibility,pressure,AQI
+WeatherObservation,London,25-03-2026,Rain,9.5,82,14.0,,,
+WeatherObservation,Manchester,24-03-2026,Cloudy,7.2,75,18.5,,,
+WeatherObservation,Birmingham,23-03-2026,Clear,12.0,60,8.0,,,
+AtmosphericReading,London,25-03-2026,Fog,,,,2.5,1008,45
+AtmosphericReading,Edinburgh,24-03-2026,Clear,,,,9.0,1015,72
+WeatherLog,Bristol,25-03-2026,Drizzle,,,,,,
+WeatherLog,Leeds,23-03-2026,Snow,,,,,,

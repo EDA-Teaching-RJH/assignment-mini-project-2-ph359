@@ -384,7 +384,9 @@ def log_basic_entry():
 # MAIN FUNCTION
 def main(): 
     core = PetrichorCore()
-    print("Welcome to Petrichor")
+    print("\nLoading...")
+    print("Loading...")
+    print("loaded")
 
     while True:
         choice = display_menu()
