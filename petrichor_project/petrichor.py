@@ -148,6 +148,8 @@ class PetrichorCore:
             
         print("\n----- Statistics -----")
         print(f"total entries logged: {len(self.entries)}")
+        self.entry_type_count()
+        self.most_logged_city()
 
         if temperature:
             print(f"Average Temperature: {sum(temperature) / len(temperature):.1f}C")
@@ -158,6 +160,46 @@ class PetrichorCore:
         
         print("-------------------------")
 
+    def most_logged_city(self):
+        # Counts how many times each city appears and returns most logged 
+        if not self.entries:
+            print("No entries logged. ")
+            return
+        
+        city_count = {}
+        for entry in self.entries:
+            if entry.city in city_count:
+                city_count[entry.city] += 1
+            else:
+                city_count[entry.city] = 1
+        
+        top_city = max(city_count, key = city_count.get)
+        print(f"\nMost logged city: {top_city} ({city_count[top_city]} entries)")
+    
+    def entry_type_count(self):
+        # Counts the different types of entries
+        if not self.entries:
+            print("No entries logged. ")
+            return
+        
+        observation_count = 0
+        Atmospheric_count = 0
+        basic_count = 0
+
+        for entry in self.entries:
+            if entry.type == "WeatherObservation":
+                observation_count += 1 
+            elif entry.type == "AtmosphericReading":
+                Atmospheric_count += 1
+            elif entry.type == "WeatherLog":
+                basic_count += 1 
+        
+        print(f"\n----- Entry Types ------")
+        print(f"Weather Observation:   {observation_count}")
+        print(f"Atmospheric Readings:  {Atmospheric_count}")
+        print(f"Basic Entries:         {basic_count}")
+        print("----------------------------")
+    
     def save_to_csv(self, filename="weather_log.csv"):
         # Saves all entries to a .csv file so data is not lost when programme is terminated 
         with open(filename, "w", newline="") as file:
