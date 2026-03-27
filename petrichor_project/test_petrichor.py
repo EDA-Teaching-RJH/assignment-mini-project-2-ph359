@@ -11,7 +11,7 @@ from petrichor import WeatherLog, WeatherObservation, AtmosphericReading, Petric
 # DATE TEST
 def test_valid_date():
     # Date in the correct format will return true
-    assert validate_date("25-03-26") == True
+    assert validate_date("25-03-2026") == True
 
 def test_invalid_date_format():
     # Date in incorrect format will return false
@@ -83,11 +83,11 @@ def test_valid_positive_number():
 
 def test_valid_positive_number_decimal():
     #Positive number with decimal will return true
-    assert validate_positive_number(90.5) == True
+    assert validate_positive_number("90.5") == True
 
 def test_invalid_positive_number_negative():
     # Negative number will return false
-    assert validate_positive_number(-6) == False
+    assert validate_positive_number("-6") == False
 
 def test_invalid_positive_number_letters():
     # Letters will return false
