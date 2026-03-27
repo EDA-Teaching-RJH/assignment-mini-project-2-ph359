@@ -284,3 +284,62 @@ def log_basic_entry():
     
     return AtmosphericReading(city, date, condition)
 
+# MAIN FUNCTION
+def main(): 
+    core = PetrichorCore()
+    print("Welcome to Petrichor")
+
+    while True:
+        choice = display_menu()
+
+        if choice == "1":
+            entry = log_weather_observation()
+            if entry:
+                core.add_entry(entry)
+
+        elif choice == "2":
+            entry = log_atmospheric_reading()
+            if entry:
+                core.add_entry(entry)
+        
+        elif choice == "3":
+            entry = log_basic_entry()
+            if entry:
+                core.add_entry(entry)
+        
+        elif choice == "4":
+            core.display_all()
+        
+        elif choice == "5":
+            city = input("Enter city to search: ").strip().title()
+            core.search_by_city(city)
+        
+        elif choice == "6":
+            print(f"Valid conditions: {WeatherLog.VALID_CONDITIONS}")
+            condition = input("Enter condition: ").strip().title()
+            core.filter_by_condition(condition)
+
+        elif choice == "7":
+            core.statistics()
+        
+        elif choice == "8":
+            core.display_all()
+            index = int(input("Enter entry number to delete: ").strip())
+            core.remove_entry(index - 1)
+        
+        elif choice == "9":
+            core.save_to_csv()
+
+        elif choice == "10":
+            core.load_from_csv()
+        
+        elif choice == "11":
+            print("Exiting Petrichor. Goodbye")
+            break
+
+        else:
+            print("Invalid option. Please try again")
+# Runs the main function only when this file is run directly
+if __name__ == "__main__":
+    main()
+        
