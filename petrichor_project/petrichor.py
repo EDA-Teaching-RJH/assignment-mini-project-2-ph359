@@ -141,7 +141,7 @@ class PetrichorCore:
         # Collects temperatures from entries that have a temperature
         for entry in self.entries:
             try:
-                temperature.append(entry.temperature)
+                temperature.append(float(entry.temperature))
             except AttributeError: 
         # Entry does not have a temperature - skips it
                 pass
