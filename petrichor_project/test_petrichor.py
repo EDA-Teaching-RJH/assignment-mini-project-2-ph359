@@ -3,7 +3,7 @@
 # ====================================================================================================================
 
 #IMPORTS
-from petrichor_tools import validate_date, validate_city, validate_temperature, validate_positive_number, get_today_date
+from petrichor_tools import validate_date, validate_city, validate_temperature, validate_positive_number, get_today_date, aqi_description
 from petrichor import WeatherLog, WeatherObservation, AtmosphericReading, PetrichorCore
 
 # ====================================================================================================================
@@ -102,7 +102,9 @@ def test_invalid_positive_number_empty():
 # PETRICHORCORE TEST
 def test_add_entry():
     # A new entry should be added to entries list
-    core = PetrichorCore()
+    core = PetrichorCore(
+
+    )
     entry = WeatherLog("Canterbury", "25-03-2026", "Clear")
     core.add_entry(entry)
     assert len(core.entries) == 1                             # Len() checks how many entries are in the list
@@ -138,3 +140,16 @@ def test_get_today_date_string():
     assert type(get_today_date()) == str
 
 #====================================================================================================================
+
+#AQI DESCRIPTION TEST
+def test_aqi_good():
+    assert aqi_description(25) == "Good"
+
+def test_aqi_moderate():
+    assert aqi_description(75) == "Moderate"
+
+def test_aqi_unhealthy():
+    assert aqi_description(125) == "Unhealthy"
+
+def test_aqi_hazardous():
+    assert aqi_description(200) == "Hazardous"
