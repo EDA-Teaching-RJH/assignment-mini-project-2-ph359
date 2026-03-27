@@ -235,7 +235,7 @@ class PetrichorCore:
                 for row in reader:
                     if row[0] == "WeatherObservation":
                         entry = WeatherObservation(row[1], row[2], row[3],
-                                                  float(row[4]), float(row[5]),
+                                                  float(row[4]), int(row[5]),
                                                   float(row[6]))
                         self.entries.append(entry)
                     elif row[0] == "AtmosphericReading":
