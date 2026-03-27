@@ -423,8 +423,11 @@ def main():
         
         elif choice == "8":
             core.display_all()
-            index = int(input("Enter entry number to delete: ").strip())
-            core.remove_entry(index - 1)
+            try:
+                index = int(input("Enter entry number to be deleted: ").strip())
+                core.remove_entry(index - 1)
+            except ValueError:
+                print("Invalid input. Please enter valid entry number. ")
         
         elif choice == "9":
             core.save_to_csv()
