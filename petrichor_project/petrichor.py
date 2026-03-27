@@ -8,6 +8,8 @@ import re       # Used to validate users input
 import csv      # Used for saving and loading data to .csv files
 import datetime # Automatically gets today's date
 
+from petrichor_tools import validate_date, validate_city, validate_temperature, validate_positive_number
+
 # CLASS 1 - Weather Entry (Superclass)
 class WeatherLog:
     VALID_CONDITIONS = ["Clear", "Cloudy", "Fog", "Drizzle", "Rain", 
@@ -233,19 +235,36 @@ def display_menu():
 def log_weather_observation():
     # Collects input from the user for Weather Observation
     print("\n----- Log Weather Observation -----")
-    city = input("Enter city: ").strip().title()                    # .strip().title() removes extra spaces 
-                                                                    # and capitalise the first letter
+   
+    city = input("Enter city: ").strip().title()                    # .strip().title() removes extra spaces and capitalise the first letter
+    if not validate_city(city):
+        print("Invalid city. Only letter and spaces allowed")
+        return None
+
     date = input("Enter date (DD-MM-YYYY): ").strip()
+    if not validate_date(date):
+        print("Invalid date. Please use DD-MM-YYYY format. ")
+        return None
+    
     print(f"Valid conditions: {WeatherLog.VALID_CONDITIONS}")
     condition = input("Enter condition: ").strip().title()
-    temperature = float(input("Enter temperature (C): ").strip())   # Float() to convert text into numbers, 
-                                                                    # used float for temp as will be decimals.
-    humidity = int(input("Enter humidity (%): ").strip())           # int() converts text into numbers.
-    wind_speed = float(input("Enter wind speed (kn): ").strip())
-
-    # Check if condition is valid before creating entry
-    if condition not in WeatherLog.VALID_CONDITIONS:
+    if condition not in WeatherLog.VALID_CONDITIONS:                # Check if condition is valid before creating entry
         print("Invalid condition. Entry not logged. ")
+        return None
+    
+    temperature = input("Enter temperature (C): ").strip()          # Float() to convert text into numbers with decimals
+    if not validate_temperature(temperature):
+        print("invalid temperature")
+        return None               
+                      
+    humidity = input("Enter humidity (%): ").strip()                # int() converts text into numbers.
+    if not validate_positive_number(humidity):
+        print("Invalid measurement. ")
+        return None
+    
+    wind_speed = float(input("Enter wind speed (kn): ").strip())
+    if not validate_positive_number(wind_speed):
+        print("Invalid measurement. ")
         return None
     
     # Create and return a new WeatherObservation item
