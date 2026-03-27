@@ -13,7 +13,7 @@ def test_valid_date():
     # Date in the correct format will return true
     assert validate_date("25-03-26") == True
 
-def test_invalid_date_format()
+def test_invalid_date_format():
     # Date in incorrect format will return false
     assert validate_date("2026-03-25") == False
 
@@ -49,7 +49,7 @@ def test_invalid_city_symbols():
 
 def test_invalid_city_empty():
     # Empty string will return false
-    assert validate_city("") = False
+    assert validate_city("") == False
 
 # ====================================================================================================================
 
@@ -96,5 +96,34 @@ def test_invalid_positive_number_letters():
 def test_invalid_positive_number_empty():
     # Empty string will return false
     assert validate_positive_number("") == False
-    
+
+# ====================================================================================================================
+
+# PETRICHORCORE TEST
+def test_add_entry():
+    # A new entry should be added to entries list
+    core = PetrichorCore()
+    entry = WeatherLog("Canterbury", "25-03-2026", "Clear")
+    core.add_entry(entry)
+    assert len(core.entries) == 1                                  # Len() checks how many entries are in the list
+
+def test_add_multiple_entries():
+    # Multiple entries will be added to list
+    core = PetrichorCore()
+    core.add_entry(WeatherLog("London", "24-03-2026", "Clear"))
+    core.add_entry(WeatherLog("Paris", "25-03-26", "Rain"))
+    assert len(core.entries) == 2 
+
+def test_remove_entry():
+    # A Valid entry will be removed from the list
+    core = PetrichorCore()
+    core.add_entry(WeatherLog("Bath", "17-03-2026", "Clear"))
+    core.remove_entry(99)
+    assert len(core.entries) == 1 
+
+def test_entries_start_empty():
+    # Will start with no entries
+    core = PetrichorCore()
+    assert len(core.entries) == 0 
+
 # ====================================================================================================================
