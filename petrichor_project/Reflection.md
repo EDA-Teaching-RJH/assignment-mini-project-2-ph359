@@ -1,0 +1,13 @@
+EENG14101|Mini Project 2|ph359
+
+Petrichor is a menu-based weather logging program. Users can log entries, view data, search, and analyse weather data across multiple cities. Users can enter three types of entries: a full observation, an atmospheric reading, or a basic entry. All entries can be saved to a .CSV file, which can be loaded to keep entries persistent between sessions.
+
+Creating Petrichor, I imported three built-in libraries; re for regex validation, CSV for file handling, and datetime for retrieving today's date. I also made my own library 'petrichor_tools.py'. Tools contains functions that are then implemented into the main. It contains validations functions like, date-format which is then called in the data entry section. Doing it like this means you do not have to write the validation 3 times for each type of entry, you can just call it. 
+
+I used csv files to save and load entries across sessions, using csv.writer, and csv.reader. I found it quite challenging to save and load data as each entry has different fields. A Weather Observation stores temperature, humidity, and wind speed, where Atmospheric Reading stores visibility, pressure, and AQI. I couldn't write every entry the same. How to solve this was, creating 'self.type' feature to each class so the save function can see what type of entry it was, and write the correct columns. To add, I found the concept of self to be initially confusing, struggling to understand why I needed it in every method, however eventually I understood after constructing the different classes.
+
+I created 30 pytest tests in test_petrichor.py. I have test for each functionality in tools, and specific tests for each function. it also tests the 'core' in the main file. This really help me identify silly mistakes like syntax errors. I used, try/except throughout to prevent the programme from crashing when the input is incorrect. 
+
+The overall structure of Petrichor does adopt a Class system. I have a superclass, WeatherLog which holds the city, date, and condition. Then two subclasses, Observation, and Atmospheric. Using 'super().__init()', allowed the subclasses to add their own unique fields. 
+
+Mini Project 2 really pushed me 'out of the box' if you will, for example the assignment being to what we want, it adds that question whether you are going in the right direction. Also pushed me further the lecture materials, for example regex patterns and CSV handling with different data types. To add to petrichor, I would add a graphical interface so the programme is more attractive and more accessible to non-technical users.
