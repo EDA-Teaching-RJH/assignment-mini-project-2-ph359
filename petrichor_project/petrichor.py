@@ -3,10 +3,8 @@
 # Username: ph359 
 # ==============================================================================================================
 
-#Imports 
-import re       # Used to validate users input      
+#Imports     
 import csv      # Used for saving and loading data to .csv files
-
 from petrichor_tools import validate_date, validate_city, validate_temperature, validate_positive_number, get_today_date, aqi_description
 
 # CLASS 1 - Weather Entry (Superclass)
