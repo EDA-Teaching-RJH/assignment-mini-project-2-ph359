@@ -25,3 +25,12 @@ def test_invalid_date_empty():
 
 def test_invalid_date_incomplete():
     assert validate_date("25-03") == False
+
+# CITY TEST
+def test_valid_city():
+    # A City name will return true
+    assert validate_city("Canterbury") == True
+
+def test_valid_city_with_space():
+    # City with a space will return true
+    as
