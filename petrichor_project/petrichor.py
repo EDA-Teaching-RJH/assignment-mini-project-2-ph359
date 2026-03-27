@@ -122,13 +122,13 @@ class PetrichorCore:
             if entry.condition.lower() == condition.lower():
                 result.append(entry)
             
-            if not result:
-                print(f"No entries found with condition: {condition}. ")
-            else:
-                print(f"\n----- Entries with {condition} -----")
-                for i, entry in enumerate(result):
-                    print(f"{i + 1}. {entry}")
-                print("---------------------------------------")
+        if not result:
+            print(f"No entries found with condition: {condition}. ")
+        else:
+            print(f"\n----- Entries with {condition} -----")
+            for i, entry in enumerate(result):
+                print(f"{i + 1}. {entry}")
+            print("---------------------------------------")
 
     def statistics(self):
         # Calculates and displays a summery of statistics from all logged entries
@@ -159,7 +159,7 @@ class PetrichorCore:
 
     def save_to_csv(self, filename="weather_log.csv"):
         # Saves all entries to a .csv file so data is not lost when programme is terminated 
-        with open(filename, "W", newline="") as file:
+        with open(filename, "w", newline="") as file:
             writer = csv.writer(file)
         # Writes the header row first
             writer.writerow(["type", "city", "date", "condition", "temperature",
@@ -172,7 +172,7 @@ class PetrichorCore:
                                     entry.humidity, entry.wind_speed,
                                     "", "", ""])
                 
-                 elif entry.type == "AtmosphericReading":
+                elif entry.type == "AtmosphericReading":
                     writer.writerow([entry.type, entry.city, entry.date,
                                     entry.condition, "", "", "",
                                     entry.visibility, entry.pressure, entry.aqi])
@@ -191,8 +191,8 @@ class PetrichorCore:
                 for row in reader:
                     if row[0] == "WeatherObservation":
                         entry = WeatherObservation(row[1], row[2], row[3],
-                                           float(row[4]), float(row[5]),
-                                            int(row[6]))
+                                                  float(row[4]), float(row[5]),
+                                                  float(row[6]))
                         self.entries.append(entry)
                     elif row[0] == "AtmosphericReading":
                         entry = AtmosphericReading(row[1], row[2], row[3],
@@ -282,7 +282,7 @@ def log_basic_entry():
         print("Invalid condition. Entry not logged. ")
         return None
     
-    return AtmosphericReading(city, date, condition)
+    return WeatherLog(city, date, condition)
 
 # MAIN FUNCTION
 def main(): 
@@ -342,4 +342,3 @@ def main():
 # Runs the main function only when this file is run directly
 if __name__ == "__main__":
     main()
-        
