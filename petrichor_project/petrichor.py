@@ -240,7 +240,10 @@ def log_weather_observation():
         print("Invalid city. Only letter and spaces allowed")
         return None
 
-    date = input("Enter date (DD-MM-YYYY): ").strip()
+    today = get_today_date()
+    date = input("Enter date (DD-MM-YYYY) [press Enter for today's date: {today}]: ").strip()
+    if date == "":
+        date = today
     if not validate_date(date):
         print("Invalid date. Please use DD-MM-YYYY format. ")
         return None
@@ -279,7 +282,10 @@ def log_atmospheric_reading():
         print("Invalid city. Only letter and spaces allowed")
         return None
                       
-    date = input("Enter date (DD-MM-YYYY): ").strip()
+    today = get_today_date()
+    date = input("Enter date (DD-MM-YYYY) [press Enter for today's date: {today}]: ").strip()
+    if date == "":
+        date = today
     if not validate_date(date):
         print("Invalid date. Please use DD-MM-YYYY format. ")
         return None
@@ -317,7 +323,10 @@ def log_basic_entry():
         print("Invalid city. Only letter and spaces allowed")
         return None      
            
-    date = input("Enter date (DD-MM-YYYY): ").strip()
+    today = get_today_date()
+    date = input("Enter date (DD-MM-YYYY) [press Enter for today's date: {today}]: ").strip()
+    if date == "":
+        date = today
     if not validate_date(date):
         print("Invalid date. Please use DD-MM-YYYY format. ")
         return None

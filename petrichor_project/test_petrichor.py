@@ -3,7 +3,7 @@
 # ====================================================================================================================
 
 #IMPORTS
-from petrichor_tools import validate_date, validate_city, validate_temperature, validate_positive_number
+from petrichor_tools import validate_date, validate_city, validate_temperature, validate_positive_number, get_today_date
 from petrichor import WeatherLog, WeatherObservation, AtmosphericReading, PetrichorCore
 
 # ====================================================================================================================
@@ -105,7 +105,7 @@ def test_add_entry():
     core = PetrichorCore()
     entry = WeatherLog("Canterbury", "25-03-2026", "Clear")
     core.add_entry(entry)
-    assert len(core.entries) == 1                                  # Len() checks how many entries are in the list
+    assert len(core.entries) == 1                             # Len() checks how many entries are in the list
 
 def test_add_multiple_entries():
     # Multiple entries will be added to list
@@ -127,3 +127,14 @@ def test_entries_start_empty():
     assert len(core.entries) == 0 
 
 # ====================================================================================================================
+
+# TODAYS DATE TEST
+def test_get_today_date_format():
+    # Today's date will match DD-MM-YYYY format
+    assert validate_date(get_today_date) == True
+
+def test_get_today_date_string():
+    # Will return a string
+    assert type(get_today_date()) == str
+
+#====================================================================================================================
