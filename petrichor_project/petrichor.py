@@ -64,7 +64,7 @@ class AtmosphericReading(WeatherLog):
         return (f"[{self.date}] {self.city} - {self.condition} |"
                 f"Visibility: {self.visibility} km |"
                 f"Pressure: {self.pressure} hPa |"
-                f"AQI: {self.aqi}")
+                f"AQI: {self.aqi} ({aqi_description(self.aqi)})")
 
 # CLASS 4 - Petrichor Core (Manager)
 # Centre of the programme, manages all entries
