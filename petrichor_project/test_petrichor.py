@@ -131,7 +131,7 @@ def test_entries_start_empty():
 # TODAYS DATE TEST
 def test_get_today_date_format():
     # Today's date will match DD-MM-YYYY format
-    assert validate_date(get_today_date) == True
+    assert validate_date(get_today_date()) == True
 
 def test_get_today_date_string():
     # Will return a string
