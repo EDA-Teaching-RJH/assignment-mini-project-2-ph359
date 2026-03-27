@@ -6,9 +6,8 @@
 #Imports 
 import re       # Used to validate users input      
 import csv      # Used for saving and loading data to .csv files
-import datetime # Automatically gets today's date
 
-from petrichor_tools import validate_date, validate_city, validate_temperature, validate_positive_number
+from petrichor_tools import validate_date, validate_city, validate_temperature, validate_positive_number, get_today_date
 
 # CLASS 1 - Weather Entry (Superclass)
 class WeatherLog:

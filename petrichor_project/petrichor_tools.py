@@ -4,7 +4,9 @@
 
 #IMPORTS
 import re # used for regex pattern matching
+import datetime
 
+# Validations
 def validate_date(date):
     # Checks date matches DD - MM - YYYY format
     # \d{2} = exactly 2 digits \d{4} = exactly 4 digits
@@ -25,3 +27,8 @@ def validate_positive_number(value):
     # Checks value is a positive number
     pattern = re.compile(r"^\d+(\.\d+)?$")
     return bool(pattern.match(value))
+
+#Functions
+def get_today_date():
+    # Returns today's date as a string in DD-MM-YYYY
+    return datetime.datetime.now().strftime("%d-%m-%Y")
