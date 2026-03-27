@@ -32,3 +32,16 @@ def validate_positive_number(value):
 def get_today_date():
     # Returns today's date as a string in DD-MM-YYYY
     return datetime.datetime.now().strftime("%d-%m-%Y")
+
+def aqi_description(aqi):
+    # Returns a description based on the AQI score
+    if aqi <= 50:
+        return "Good"
+    elif aqi <= 100:
+        return "Moderate"
+    elif aqi <= 150:
+        return "Unhealthy"
+    else:
+        return "Hazardous"
+
+        
