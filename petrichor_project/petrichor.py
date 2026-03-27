@@ -152,7 +152,8 @@ class PetrichorCore:
         self.most_logged_city()
 
         if temperature:
-            print(f"Average Temperature: {sum(temperature) / len(temperature):.1f}C")
+            avg = sum(temperature) / len(temperature)
+            print(f"Average Temperature: {avg:.1f}C")
             print(f"Highest Reading:     {max(temperature)}C")
             print(f"Lowest reading:      {min(temperature)}C")
         else:
